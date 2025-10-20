@@ -1,0 +1,12 @@
+{% block title %}Book Form{% endblock %}
+
+{% block body %}
+<h1>{{ bookForm.vars.value.id ? 'Edit Book' : 'Add Book' }}</h1>
+
+{{ form_start(bookForm) }}
+    {{ form_widget(bookForm) }}
+    <button class="btn btn-primary">Save</button>
+{{ form_end(bookForm) }}
+
+<a href="{{ path('book_list') }}">Back to list</a>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book List{% endblock %}
+
+{% block body %}
+<h1>Book List</h1>
+
+<p>Published: {{ publishedCount }} | Unpublished: {{ unpublishedCount }}</p>
+
+{% if books is empty %}
+    <p>No Books found</p>
+{% else %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Published</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+               <td>{{ book.author ? book.author.username : 'No Author' }}</td>
+
+                <td>{{ book.published ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('book_edit', {'id': book.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ path('book_delete', {'id': book.id}) }}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<a href="{{ path('book_add') }}" class="btn btn-primary">Add Book</a>
+<a href="{{ path('delete_authors_zero_books') }}" class="btn btn-danger">Delete Authors with 0 books</a>
+{% endblock %}
