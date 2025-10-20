@@ -15,29 +15,6 @@ class AuthorRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Author::class);
     }
-// Keep only one method for book count range
-public function findAuthorsByBookCountRange(int $min, int $max): array
-{
-    $query = $this->getEntityManager()->createQuery(
-        'SELECT a
-         FROM App\Entity\Author a
-         WHERE a.nbBooks BETWEEN :min AND :max'
-    )
-    ->setParameter('min', $min)
-    ->setParameter('max', $max);
-
-    return $query->getResult();
-}
-
-public function deleteAuthorsWithNoBooks(): void
-{
-    $query = $this->getEntityManager()->createQuery(
-        'DELETE FROM App\Entity\Author a
-         WHERE a.nbBooks = 0'
-    );
-    $query->execute();
-}
-
 
     //    /**
     //     * @return Author[] Returns an array of Author objects
