@@ -54,15 +54,19 @@ final class AuthorController extends AbstractController
         return null;
     }
 
-    #[Route('/authorDetails/{id}', name: 'author_authorDetails')]
-    public function authorDetails($id): Response
-    {
-        $auth = $this->serchById($id);
+ #[Route('/authorDetails/{id}', name: 'author_authorDetails')]
+public function authorDetails(AuthorRepository $authRepo, $id): Response
+{
+    $auth = $authRepo->find($id);
 
-        return $this->render('author/showAuthor.html.twig', [
-            'auth' => $auth
-        ]);
+    if (!$auth) {
+        throw $this->createNotFoundException('Author not found.');
     }
+
+    return $this->render('author/showAuthor.html.twig', [
+        'auth' => $auth
+    ]);
+}
 
 
 

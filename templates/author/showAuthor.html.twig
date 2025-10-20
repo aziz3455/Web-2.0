@@ -1,2 +1,8 @@
-{{auth.id ~ auth.username ~ auth.email}}
-<a href="{{path("author_getAuthors")}}">back to lis</a>
+{% if auth %}
+    <h1>{{ auth.username }}</h1>
+    <p>Email: {{ auth.email }}</p>
+    <p>Number of books: {{ auth.nbBook }}</p>
+{% else %}
+    <p>Author not found.</p>
+    <h1>{{ auth.id }}</h1>
+{% endif %}
