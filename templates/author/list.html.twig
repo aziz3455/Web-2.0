@@ -1,5 +1,5 @@
 <form method="get" action="{{ path('author_getAuthors') }}">
-	<input type="text" name="author" placeholder="author name" value="{{name}}">
+	<input type="text" name="author" placeholder="author name" value="{{name|default('')}}">
 	<button type="submit">Rechercher</button>
 </form>
 
@@ -21,7 +21,7 @@
 			<th>Id</th>
 			<th>UserNAme</th>
 			<th>email</th>
-			<th>nb_books</th>
+			<th>nbBook</th>
 			<th>actions</th>
 		</tr>
 		{% set l=0 %}
