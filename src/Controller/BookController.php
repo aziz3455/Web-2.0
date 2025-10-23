@@ -43,8 +43,7 @@ final class BookController extends AbstractController
     public function add(EntityManagerInterface $em, Request $request): Response
     {
         $book = new Book();
-        $book->setPublished(true); // default to published
-
+        $book->setPublished(true); 
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
@@ -102,7 +101,7 @@ final class BookController extends AbstractController
         return $this->redirectToRoute('book_list');
     }
 
-    // Delete authors with 0 books
+   
     #[Route('/authors/delete-zero-books', name: 'delete_authors_zero_books')]
     public function deleteAuthorsZeroBooks(EntityManagerInterface $em, AuthorRepository $authorRepo): Response
     {
